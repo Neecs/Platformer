@@ -10,12 +10,45 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed = 5f;
     Vector2 moveInput;
 
-    public bool IsMoving { get; private set; }
+    [SerializeField]
+    private bool _isMoving = false;
+
+    public bool IsMoving
+    {
+        get
+        {
+            return _isMoving;
+        }
+        private set
+        {
+            _isMoving = value;
+            animator.SetBool("isMoving", value);
+        }
+    }
+
+    [SerializeField]
+    private bool _isRunning = false;
+
+    public bool IsRunning
+    {
+        get
+        {
+            return _isRunning;
+        }
+        set
+        {
+            _isRunning = value;
+            animator.SetBool("isRunning", value);
+        }
+    }
+
     Rigidbody2D rb;
+    Animator animator;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -39,5 +72,17 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = context.ReadValue<Vector2>();
         IsMoving = moveInput != Vector2.zero;
+    }
+
+    public void OnRun(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            IsRunning = true;
+        }
+        else if (context.canceled)
+        {
+            IsRunning = false;
+        }
     }
 }
