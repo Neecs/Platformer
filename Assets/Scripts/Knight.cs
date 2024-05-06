@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class Knight : MonoBehaviour
 {
     public float walkSpeed = 6f;
@@ -13,6 +13,7 @@ public class Knight : MonoBehaviour
     Rigidbody2D rb;
     TouchingDirections touchingDirections;
     Animator animator;
+    Damageable damageable;
 
     public enum WalkableDirection { right, left }
     private WalkableDirection _walkDirection;
@@ -20,7 +21,8 @@ public class Knight : MonoBehaviour
     public WalkableDirection WalkDirection
     {
         get { return _walkDirection; }
-        set { 
+        set
+        {
             if (_walkDirection != value)
             {
                 gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x * -1, gameObject.transform.localScale.y);
@@ -32,20 +34,24 @@ public class Knight : MonoBehaviour
                 else if (value == WalkableDirection.left)
                 {
                     walkDirectionVector = Vector2.left;
-                }    
+                }
             }
-            _walkDirection = value; }
+            _walkDirection = value;
+        }
     }
 
     public bool _hasTarget = false;
-    public bool HasTarget { get { return _hasTarget; } private set 
+    public bool HasTarget
+    {
+        get { return _hasTarget; }
+        private set
         {
             _hasTarget = value;
             animator.SetBool(AnimationStrings.hasTarget, value);
-            
-        } 
+
+        }
     }
-    
+
     public bool CanMove
     {
         get
@@ -59,6 +65,7 @@ public class Knight : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         touchingDirections = GetComponent<TouchingDirections>();
         animator = GetComponent<Animator>();
+        damageable = GetComponent<Damageable>();
     }
 
     void Update()
@@ -73,10 +80,15 @@ public class Knight : MonoBehaviour
             FlipDirection();
         }
 
-        if (CanMove)
-            rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
-        else
-            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);    
+        if (!damageable.LockVelocity)
+        {
+            if (CanMove)
+                rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+            else
+                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
+        }
+
+
     }
 
     private void FlipDirection()
@@ -84,12 +96,19 @@ public class Knight : MonoBehaviour
         if (WalkDirection == WalkableDirection.right)
         {
             WalkDirection = WalkableDirection.left;
-        } else if (WalkDirection == WalkableDirection.left)
+        }
+        else if (WalkDirection == WalkableDirection.left)
         {
             WalkDirection = WalkableDirection.right;
-        } else
+        }
+        else
         {
             Debug.LogError("Current walkable direction is not set to legal values of right or left");
         }
+    }
+
+    public void OnHit(int damage, Vector2 knockback)
+    {
+        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
 }
