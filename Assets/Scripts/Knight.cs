@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class Knight : MonoBehaviour
 {
-    public float walkSpeed = 6f;
+    public float walkSpeed = 3f;
     public float walkStopRate = 0.2f;
     public DetectionZone attackZone;
 
@@ -15,7 +15,7 @@ public class Knight : MonoBehaviour
     Animator animator;
     Damageable damageable;
 
-    public enum WalkableDirection { right, left }
+    public enum WalkableDirection { Right, Left }
     private WalkableDirection _walkDirection;
     private Vector2 walkDirectionVector = Vector2.right;
     public WalkableDirection WalkDirection
@@ -27,11 +27,11 @@ public class Knight : MonoBehaviour
             {
                 gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x * -1, gameObject.transform.localScale.y);
 
-                if (value == WalkableDirection.right)
+                if (value == WalkableDirection.Right)
                 {
                     walkDirectionVector = Vector2.right;
                 }
-                else if (value == WalkableDirection.left)
+                else if (value == WalkableDirection.Left)
                 {
                     walkDirectionVector = Vector2.left;
                 }
@@ -80,26 +80,20 @@ public class Knight : MonoBehaviour
             FlipDirection();
         }
 
-        if (!damageable.LockVelocity)
-        {
-            if (CanMove)
-                rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
-            else
-                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
-        }
+        rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
 
 
     }
 
     private void FlipDirection()
     {
-        if (WalkDirection == WalkableDirection.right)
+        if (WalkDirection == WalkableDirection.Right)
         {
-            WalkDirection = WalkableDirection.left;
+            WalkDirection = WalkableDirection.Left;
         }
-        else if (WalkDirection == WalkableDirection.left)
+        else if (WalkDirection == WalkableDirection.Left)
         {
-            WalkDirection = WalkableDirection.right;
+            WalkDirection = WalkableDirection.Right;
         }
         else
         {

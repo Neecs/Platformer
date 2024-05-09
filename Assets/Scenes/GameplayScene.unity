@@ -1896,6 +1896,10 @@ PrefabInstance:
       propertyPath: attackZone
       value: 
       objectReference: {fileID: 1108971717}
+    - target: {fileID: 3125477519729087644, guid: 604f3ec5eacfe5c43bdf27847aed84c8, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5565416672317237086, guid: 604f3ec5eacfe5c43bdf27847aed84c8, type: 3}
       propertyPath: m_Name
       value: KnightEnemy
@@ -2187,7 +2191,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1134342879
   m_SortingLayer: -1
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -2825,6 +2829,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 5, y: -2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 6
+      m_TileSpriteIndex: 6
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 16, y: -2, z: 0}
     second:
       serializedVersion: 2
@@ -2909,6 +2923,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 6d49ab28b4a9f894ab0adc50d0b3a086, type: 2}
   - m_RefCount: 7
     m_Data: {fileID: 11400000, guid: c99aae40484513a4bbcce16893ce4800, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 8afdc22c3950217479ee801f24f16548, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 16
     m_Data: {fileID: -818290677, guid: 5dab290cd726e3a4d9bc813473bf7f41, type: 3}
@@ -2922,8 +2938,10 @@ Tilemap:
     m_Data: {fileID: -831491713, guid: 5dab290cd726e3a4d9bc813473bf7f41, type: 3}
   - m_RefCount: 7
     m_Data: {fileID: 847741816, guid: 5dab290cd726e3a4d9bc813473bf7f41, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -948038326, guid: 5dab290cd726e3a4d9bc813473bf7f41, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 69
+  - m_RefCount: 70
     m_Data:
       e00: 1
       e01: 0
@@ -2942,7 +2960,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 69
+  - m_RefCount: 70
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -3028,6 +3046,10 @@ CompositeCollider2D:
       - X: 60000000
         Y: -30000000
       - X: 60000000
+        Y: -10000000
+      - X: 50000000
+        Y: -10000000
+      - X: 50000000
         Y: -20000000
       - X: -100000000
         Y: -20000000
@@ -3060,7 +3082,9 @@ CompositeCollider2D:
       - {x: 2, y: -5.9999704}
       - {x: 2.0000293, y: -3}
       - {x: 6, y: -2.999971}
-      - {x: 5.999971, y: -2}
+      - {x: 5.999971, y: -1}
+      - {x: 5, y: -1.0000293}
+      - {x: 4.9999704, y: -2}
       - {x: -10, y: -1.9999707}
       - {x: -10.00003, y: 5}
       - {x: -11, y: 4.999971}
