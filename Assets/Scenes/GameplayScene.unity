@@ -1955,6 +1955,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 711905059879674474, guid: 604f3ec5eacfe5c43bdf27847aed84c8, type: 3}
+      propertyPath: castFilter.useDepth
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1782848049644994260, guid: 604f3ec5eacfe5c43bdf27847aed84c8, type: 3}
       propertyPath: attackZone
       value: 
@@ -1997,11 +2001,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8189765846947324637, guid: 604f3ec5eacfe5c43bdf27847aed84c8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.21
+      value: 8.35
       objectReference: {fileID: 0}
     - target: {fileID: 8189765846947324637, guid: 604f3ec5eacfe5c43bdf27847aed84c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.68
+      value: -4.75
       objectReference: {fileID: 0}
     - target: {fileID: 8189765846947324637, guid: 604f3ec5eacfe5c43bdf27847aed84c8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3344,6 +3348,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1030067263629777687, guid: 833021e5181e5424a94cb60fa9dd331f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078548632226288951, guid: 833021e5181e5424a94cb60fa9dd331f, type: 3}
+      propertyPath: _hasTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4419630916890731480, guid: 833021e5181e5424a94cb60fa9dd331f, type: 3}
