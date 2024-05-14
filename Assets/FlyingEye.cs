@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class FlyingEyeScript : MonoBehaviour
 {
+    [SerializeField]
+    private float moveSpeed = 8f;
     public DetectionZone biteDetectionZone;
     Animator animator;
     Rigidbody2D rb;
@@ -80,7 +82,7 @@ public class FlyingEyeScript : MonoBehaviour
             FlipDirection();
         }
 
-        rb.velocity = new Vector2(walkDiretionVector.x, rb.velocity.y);
+        rb.velocity = new Vector2(walkDiretionVector.x * moveSpeed, rb.velocity.y);
     }
 
     private void FlipDirection()
@@ -102,5 +104,51 @@ public class FlyingEyeScript : MonoBehaviour
     public void OnHit(int damage, Vector2 knockback)
     {
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+    }
+
+    private Coroutine _randomWalkCoroutine;
+
+    private void Start()
+    {
+        _randomWalkCoroutine = StartCoroutine(RandomWalk());
+    }
+
+    private IEnumerator RandomWalk()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+
+            float randomValue = Random.value;
+            Vector2 newDirection = Vector2.zero;
+
+            if (randomValue < 0.25f)
+            {
+                newDirection = Vector2.left;
+            }
+            else if (randomValue < 0.5f)
+            {
+                newDirection = Vector2.right;
+            }
+            else if (randomValue < 0.75f)
+            {
+                newDirection = Vector2.up;
+            }
+            else
+            {
+                newDirection = Vector2.down;
+            }
+
+            walkDiretionVector = newDirection;
+            rb.velocity = new Vector2(walkDiretionVector.x, rb.velocity.y);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_randomWalkCoroutine!= null)
+        {
+            StopCoroutine(_randomWalkCoroutine);
+        }
     }
 }
