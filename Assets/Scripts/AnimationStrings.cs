@@ -10,6 +10,8 @@ namespace Assets.Scripts
     {
         internal static string isMoving = "isMoving";
         internal static string isRunning = "isRunning";
+        internal static string isDefending = "isDefending";
+
         internal static string isGrounded = "isGrounded";
         internal static string yVelocity = "yVelocity";
         internal static string jumpTrigger = "jump";

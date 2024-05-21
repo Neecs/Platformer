@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private bool _isRunning = false;
+    private bool _isDefending = false;
 
     public bool IsRunning
     {
@@ -83,6 +84,18 @@ public class PlayerController : MonoBehaviour
         {
             _isRunning = value;
             animator.SetBool(AnimationStrings.isRunning, value);
+        }
+    }
+    public bool IsDefending
+    {
+        get
+        {
+            return _isDefending;
+        }
+        set
+        {
+            _isDefending = value;
+            animator.SetBool(AnimationStrings.isDefending, value);
         }
     }
 
@@ -190,6 +203,17 @@ public class PlayerController : MonoBehaviour
             IsRunning = false;
         }
     }
+    public void OnDefend(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            IsDefending = true;
+        }
+        else if (context.canceled)
+        {
+            IsDefending = false;
+        }
+    }
 
     public void OnJump(InputAction.CallbackContext context)
     {
@@ -207,7 +231,7 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger(AnimationStrings.attackTrigger);
         }
     }
-
+    
     public void OnHit(int damage, Vector2 knockback)
     {
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
