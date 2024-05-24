@@ -114,6 +114,8 @@ public class Damageable : MonoBehaviour
             LockVelocity = true;
             damageableHit?.Invoke(damage, knockback);
 
+            CharacterEvents.characterDamaged.Invoke(gameObject, damage);
+
             return true;
         }
 
