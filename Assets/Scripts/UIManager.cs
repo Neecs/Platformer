@@ -21,12 +21,12 @@ public class UIManager : MonoBehaviour
 
     private void onEnabled()
     {
-        CharacterEvents.characterDamaged += CharacterTookDamage;
+        CharacterEvents.characterDamaged.AddListener(CharacterTookDamage);
         CharacterEvents.characterHealed += CharacterHealed;
     }
     private void onDisabled()
     {
-        CharacterEvents.characterDamaged -= CharacterTookDamage;
+        CharacterEvents.characterDamaged.AddListener(CharacterTookDamage);
         CharacterEvents.characterHealed -= CharacterHealed;
     }
 

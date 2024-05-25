@@ -114,7 +114,14 @@ public class Damageable : MonoBehaviour
             LockVelocity = true;
             damageableHit?.Invoke(damage, knockback);
 
-            CharacterEvents.characterDamaged.Invoke(gameObject, damage);
+            if (CharacterEvents.characterDamaged != null)
+            {
+                CharacterEvents.characterDamaged.Invoke(gameObject, damage);
+            }
+            else
+            {
+                Debug.LogWarning("El evento characterDamaged no ha sido inicializado.");
+            }
 
             return true;
         }
