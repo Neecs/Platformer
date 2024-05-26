@@ -6,6 +6,12 @@ public class AttackPickUp : MonoBehaviour
 {
     public float damageBoostDuration = 15f;
     public Vector3 spinRotationSpeed = new Vector3(0, 180, 0);
+    AudioSource pickUpSource;
+
+    private void Awake()
+    {
+        pickUpSource = GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,6 +21,10 @@ public class AttackPickUp : MonoBehaviour
         {
             Debug.Log("ENTRO AL IF ATTACK PICK UP ");
             playerController.UpAttack(damageBoostDuration);
+            if (pickUpSource)
+            {
+                AudioSource.PlayClipAtPoint(pickUpSource.clip, gameObject.transform.position, pickUpSource.volume);
+            }
             Debug.Log("SALIO METODO AL IF ATTACK PICK UP ");
 
             Destroy(gameObject);
