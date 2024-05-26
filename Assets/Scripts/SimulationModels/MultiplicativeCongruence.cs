@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class LinearCongruential
+public class MultiplicativeCongruence
 {
     private int a;
     private int g;
@@ -8,7 +8,7 @@ public class LinearCongruential
     private int c;
     private long xi;
 
-    public LinearCongruential()
+    public MultiplicativeCongruence()
     {
         g = 31;
         a = 48271;

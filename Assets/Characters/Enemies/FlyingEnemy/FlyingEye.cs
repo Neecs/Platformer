@@ -118,7 +118,7 @@ public class FlyingEyeScript : MonoBehaviour
     private IEnumerator RandomWalk()
     {
 
-      LinearCongruential linearCongruential = new LinearCongruential();
+      MultiplicativeCongruence linearCongruential = new MultiplicativeCongruence();
 
 
         while (true)

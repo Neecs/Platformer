@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class EnemyAppearances : MonoBehaviour
 {
-    private Queue<GameObject> enemyQueue;
 
     public List<GameObject> enemies;
     private Coroutine enemyAppearanceCoroutine; // Referencia a la corrutina de aparición de enemigos
-    LinearCongruential linearCongruential;
+    MultiplicativeCongruence linearCongruential;
 
     // Start is called before the first frame update
     void Start()
     {
-        linearCongruential = new LinearCongruential();
-        enemyQueue = new Queue<GameObject>(enemies);
+        linearCongruential = new MultiplicativeCongruence();
         foreach (GameObject enemy in enemies)
         {
             enemy.SetActive(false);
@@ -28,7 +26,7 @@ public class EnemyAppearances : MonoBehaviour
     {
         for (int i = 0; i < enemies.Count; i++)
         {
-            if (enemyQueue.Count > 0)
+            if (enemies.Count > 0)
             {
 
                 float interArrivalTime = linearCongruential.RandomNumber() * 10;
@@ -36,9 +34,13 @@ public class EnemyAppearances : MonoBehaviour
                 Debug.Log(interArrivalTime);
 
                 GameObject currentEnemy = enemies[(int)linearCongruential.RandomNumberRange(0, enemies.Count)];
-                currentEnemy.SetActive(true);
 
-                yield return new WaitForSeconds(linearCongruential.RandomNumber() * 10);
+                if (currentEnemy != null)
+                {
+                    currentEnemy.SetActive(true);
+
+                    yield return new WaitForSeconds(linearCongruential.RandomNumber() * 10);
+                }
 
             }
         }
@@ -47,7 +49,7 @@ public class EnemyAppearances : MonoBehaviour
     // Método para detener la corrutina de aparición de enemigos
     public void StopEnemyAppearances()
     {
-        if (enemyQueue.Count == 0)
+        if (enemies.Count == 0)
         {
             StopCoroutine(enemyAppearanceCoroutine);
         }
