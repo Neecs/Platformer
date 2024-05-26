@@ -20,6 +20,18 @@ PrefabInstance:
       propertyPath: attackZone
       value: 
       objectReference: {fileID: 408015892257275865}
+    - target: {fileID: 2406800783085011787, guid: 604f3ec5eacfe5c43bdf27847aed84c8, type: 3}
+      propertyPath: knockback.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2406800783085011787, guid: 604f3ec5eacfe5c43bdf27847aed84c8, type: 3}
+      propertyPath: knockback.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2406800783085011787, guid: 604f3ec5eacfe5c43bdf27847aed84c8, type: 3}
+      propertyPath: attackDamage
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 2784841635959645590, guid: 604f3ec5eacfe5c43bdf27847aed84c8, type: 3}
       propertyPath: m_Size.x
       value: 1.0627276
@@ -162,7 +174,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6790369203701533044, guid: 604f3ec5eacfe5c43bdf27847aed84c8, type: 3}
       propertyPath: _health
-      value: 35
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6790369203701533044, guid: 604f3ec5eacfe5c43bdf27847aed84c8, type: 3}
+      propertyPath: _isAlive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6790369203701533044, guid: 604f3ec5eacfe5c43bdf27847aed84c8, type: 3}
+      propertyPath: _maxHealth
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6790369203701533044, guid: 604f3ec5eacfe5c43bdf27847aed84c8, type: 3}
       propertyPath: damageableHit.m_PersistentCalls.m_Calls.Array.size
