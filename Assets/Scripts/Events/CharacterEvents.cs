@@ -7,16 +7,7 @@ using UnityEngine.Events;
 
 public class CharacterEvents : MonoBehaviour
 {
-    public static UnityEvent<GameObject, int> characterDamaged;
+    public static UnityAction<GameObject, int> characterDamaged;
     public static UnityAction<GameObject, int> characterHealed;
 
-    public void Awake()
-    {
-        // Inicializar characterDamaged si es null
-        if (characterDamaged == null)
-        {
-            characterDamaged = new UnityEvent<GameObject, int>();
-        }
-    
-    }
 }   
