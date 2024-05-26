@@ -235,10 +235,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05220807a3fa4b9468b78c567f26ad4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 5
-  runSpeed: 8
   jumpImpulse: 10
   airWalkSpeed: 5
+  attackDamage: 15
+  walkSpeed: 5
+  runSpeed: 8
   _isMoving: 1
   _isRunning: 0
   _isFacingRight: 1
@@ -511,6 +512,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  healthChange:
+    m_PersistentCalls:
+      m_Calls: []
   _maxHealth: 100
   _health: 100
   _isAlive: 1
@@ -623,5 +627,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04b6217eed27e1749ac06dc2ae4f27c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 15
+  attackDamage: 25
   knockback: {x: 1, y: 0}

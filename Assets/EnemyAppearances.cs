@@ -29,7 +29,7 @@ public class EnemyAppearances : MonoBehaviour
             if (enemies.Count > 0)
             {
 
-                float interArrivalTime = linearCongruential.RandomNumber() * 10;
+                float interArrivalTime = linearCongruential.RandomNumberRange(3,6);
                 yield return new WaitForSeconds(interArrivalTime);
                 Debug.Log(interArrivalTime);
 
@@ -39,7 +39,7 @@ public class EnemyAppearances : MonoBehaviour
                 {
                     currentEnemy.SetActive(true);
 
-                    yield return new WaitForSeconds(linearCongruential.RandomNumber() * 10);
+                    
                 }
 
             }
