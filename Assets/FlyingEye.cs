@@ -117,26 +117,18 @@ public class FlyingEyeScript : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
 
             float randomValue = Random.value;
             Vector2 newDirection = Vector2.zero;
 
-            if (randomValue < 0.25f)
+            if (randomValue < 0.5f)
             {
                 newDirection = Vector2.left;
             }
             else if (randomValue < 0.5f)
             {
                 newDirection = Vector2.right;
-            }
-            else if (randomValue < 0.75f)
-            {
-                newDirection = Vector2.up;
-            }
-            else
-            {
-                newDirection = Vector2.down;
             }
 
             walkDiretionVector = newDirection;
