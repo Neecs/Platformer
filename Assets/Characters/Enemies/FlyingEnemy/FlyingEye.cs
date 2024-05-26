@@ -7,7 +7,7 @@ using UnityEngine;
 public class FlyingEyeScript : MonoBehaviour
 {
     [SerializeField]
-    private float moveSpeed = 8f;
+    private float moveSpeed = 6f;
     public DetectionZone biteDetectionZone;
     Animator animator;
     Rigidbody2D rb;
@@ -119,20 +119,23 @@ public class FlyingEyeScript : MonoBehaviour
         {
             yield return new WaitForSeconds(2f);
 
-            float randomValue = Random.value;
+            float randomValue = new LinearCongruential().RandomNumber();
             Vector2 newDirection = Vector2.zero;
 
+            Debug.Log("Random walk direction: " + randomValue);
             if (randomValue < 0.5f)
             {
                 newDirection = Vector2.left;
+                WalkDirection = WalkableDirection.Left;
             }
-            else if (randomValue < 0.5f)
+            else if (randomValue >= 0.5f)
             {
                 newDirection = Vector2.right;
+                WalkDirection = WalkableDirection.Right;
             }
 
             walkDiretionVector = newDirection;
-            rb.velocity = new Vector2(walkDiretionVector.x, rb.velocity.y);
+            rb.velocity = new Vector2(walkDiretionVector.x * moveSpeed, rb.velocity.y);
         }
     }
 

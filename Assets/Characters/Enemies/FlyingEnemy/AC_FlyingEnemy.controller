@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4179fff35e1d86f589333508ea6c6d22, type: 2}
+  m_Motion: {fileID: 7400000, guid: 93d6031ba7ce699478918924ebaaae21, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -152,7 +152,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 509cca5480fe90c43887814148a7ef40, type: 2}
+  m_Motion: {fileID: 7400000, guid: a7099e42719815544a446f356f6f40e5, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -206,7 +206,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AC_Knight
+  m_Name: AC_FlyingEnemy
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isOnWall
@@ -427,7 +427,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 391e4e99b3f50da4481b3f6c388b56b9, type: 2}
+  m_Motion: {fileID: 7400000, guid: c1909a548338d0b43804353f40ba7563, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -489,7 +489,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 61d6b5ba68292d742a8ad45f475d70f4, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2506fec66b8328245833e3ca2c38bc77, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
