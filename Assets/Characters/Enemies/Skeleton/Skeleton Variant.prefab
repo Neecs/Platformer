@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_RenderingLayerMask
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4840231707731501599, guid: 604f3ec5eacfe5c43bdf27847aed84c8, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9164a1679e93f29469f6f50ed575731a, type: 2}
     - target: {fileID: 5565416672317237086, guid: 604f3ec5eacfe5c43bdf27847aed84c8, type: 3}
       propertyPath: m_Name
       value: Skeleton Variant
