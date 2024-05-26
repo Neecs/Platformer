@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class LinearCongruential
+public class MultiplicativeCongruence
 {
     private int a;
     private int g;
@@ -8,7 +8,7 @@ public class LinearCongruential
     private int c;
     private long xi;
 
-    public LinearCongruential()
+    public MultiplicativeCongruence()
     {
         g = 31;
         a = 48271;
@@ -23,5 +23,13 @@ public class LinearCongruential
         xi = ((a * xi) + c) % m;
         float ri = (float)xi / (m - 1);
         return ri;
+    }
+
+    public float RandomNumberRange(int min, int max)
+    {
+        xi = ((a * xi) + c) % m;
+        float ri = (float)xi / (m - 1);
+        float Ni = min + ((max - min) * ri);
+        return Ni;
     }
 }
