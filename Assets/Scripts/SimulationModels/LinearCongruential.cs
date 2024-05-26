@@ -24,4 +24,12 @@ public class LinearCongruential
         float ri = (float)xi / (m - 1);
         return ri;
     }
+
+    public float RandomNumberRange(int min, int max)
+    {
+        xi = ((a * xi) + c) % m;
+        float ri = (float)xi / (m - 1);
+        float Ni = min + ((max - min) * ri);
+        return Ni;
+    }
 }

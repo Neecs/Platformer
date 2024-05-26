@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts;
+using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class Knight : MonoBehaviour
 {
-    public float walkSpeed = 3f;
+    private float walkSpeed = 3f;
     public float walkStopRate = 0.2f;
     public DetectionZone attackZone;
 
@@ -79,6 +81,7 @@ public class Knight : MonoBehaviour
         {
             FlipDirection();
         }
+
 
         rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
 

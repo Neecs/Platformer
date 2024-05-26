@@ -18,6 +18,8 @@ public class FlyingEyeScript : MonoBehaviour
     private WalkableDirection _walkDirection;
     private Vector2 walkDiretionVector = Vector2.left;
     private Vector2 flyDiretionVector = Vector2.up;
+
+
     public WalkableDirection WalkDirection
     {
         get { return _walkDirection; }
@@ -115,11 +117,15 @@ public class FlyingEyeScript : MonoBehaviour
 
     private IEnumerator RandomWalk()
     {
+
+      LinearCongruential linearCongruential = new LinearCongruential();
+
+
         while (true)
         {
             yield return new WaitForSeconds(2f);
 
-            float randomValue = new LinearCongruential().RandomNumber();
+            float randomValue = linearCongruential.RandomNumber();
             Vector2 newDirection = Vector2.zero;
 
             Debug.Log("Random walk direction: " + randomValue);
