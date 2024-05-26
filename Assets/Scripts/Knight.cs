@@ -8,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class Knight : MonoBehaviour
 {
-    private LinearCongruential rng;
+    private MultiplicativeCongruence rng;
     public List<LootItem> lootTable; // Lista de power-ups que pueden ser dropeados
 
 
@@ -40,7 +40,7 @@ public class Knight : MonoBehaviour
 
         // Generar un n�mero aleatorio propsio entre 0 y la suma total de las probabilidades
 
-        rng = new LinearCongruential();
+        rng = new MultiplicativeCongruence();
         float randomValue = rng.RandomNumber() * totalProbability;
        
         float cumulativeProbability = 0f;
