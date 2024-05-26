@@ -7,13 +7,14 @@ using UnityEngine.Events;
 public class Damageable : MonoBehaviour
 {
     public UnityEvent<int, Vector2> damageableHit;
+    public UnityEvent<int, int> healthChange;
 
     Animator animator;
 
     [SerializeField]
-    private float _maxHealth = 100;
+    private int _maxHealth = 100;
 
-    public float MaxHealth
+    public int MaxHealth
     {
         get
         {
@@ -26,9 +27,9 @@ public class Damageable : MonoBehaviour
     }
 
     [SerializeField]
-    private float _health = 100;
+    private int _health = 100;
 
-    public float Health
+    public int Health
     {
         get
         {
@@ -37,6 +38,7 @@ public class Damageable : MonoBehaviour
         set
         {
             _health = value;
+            healthChange?.Invoke(_health, MaxHealth);
 
             if (_health <= 0)
             {
@@ -122,10 +124,33 @@ public class Damageable : MonoBehaviour
             {
                 Debug.LogWarning("El evento characterDamaged no ha sido inicializado.");
             }
+            // Verificar si la salud es menor o igual a cero para llamar a OnDeath
+            if (Health <= 0)
+            {
+                Knight knight = GetComponent<Knight>();
+                if (knight != null)
+                {
+                    knight.OnDeath();
+                }
+            }
 
             return true;
         }
 
+        return false;
+    }
+    public bool Heal(int healthRestored)
+    {
+        if (IsAlive && Health<MaxHealth)
+        {
+            int maxHeal = Mathf.Max(MaxHealth - Health, 0);
+            int actualHealt = Mathf.Min(maxHeal, healthRestored);
+
+            Health += actualHealt;
+
+            CharacterEvents.characterHealed(gameObject, actualHealt);
+            return true;
+        }
         return false;
     }
 }

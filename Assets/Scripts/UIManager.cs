@@ -18,25 +18,24 @@ public class UIManager : MonoBehaviour
         }
 
     }
-
-    private void onEnabled()
+    private void OnEnable()
     {
-        CharacterEvents.characterDamaged.AddListener(CharacterTookDamage);
+        CharacterEvents.characterDamaged += CharacterTookDamage;
         CharacterEvents.characterHealed += CharacterHealed;
     }
-    private void onDisabled()
+    private void OnDisable()
     {
-        CharacterEvents.characterDamaged.AddListener(CharacterTookDamage);
+        CharacterEvents.characterDamaged -= CharacterTookDamage;
         CharacterEvents.characterHealed -= CharacterHealed;
     }
-
+    
     public void CharacterTookDamage(GameObject character, int damageRecivied)
     {
         Vector3 spawnPosition = Camera.main.WorldToScreenPoint(character.transform.position);
 
         TMP_Text tmpText = Instantiate(damageTextPrefab, spawnPosition, Quaternion.identity, gameCanvas.transform).GetComponent<TMP_Text>();
 
-        tmpText.text = damageRecivied.ToString();
+        tmpText.text = "-" + damageRecivied.ToString();
     }
 
     public void CharacterHealed(GameObject character, int healthRestored)
@@ -45,6 +44,6 @@ public class UIManager : MonoBehaviour
 
         TMP_Text tmpText = Instantiate(healthTextPrefab, spawnPosition, Quaternion.identity, gameCanvas.transform).GetComponent<TMP_Text>();
 
-        tmpText.text = healthTextPrefab.ToString();
+        tmpText.text = "+" + healthRestored.ToString();
     }
 }

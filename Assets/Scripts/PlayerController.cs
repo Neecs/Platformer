@@ -8,14 +8,27 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class PlayerController : MonoBehaviour
 {
-    public float walkSpeed = 5f;
-    public float runSpeed = 8f;
+    
     public float jumpImpulse = 10f;
     public float airWalkSpeed = 6f;
+    private bool isSpeedBoosted = false;
+    public int attackDamage = 15;
+
+    public float walkSpeed = 5f;
+    public float runSpeed = 8f;
 
     Vector2 moveInput;
     TouchingDirections touchingDirections;
     Damageable damageable;
+
+    public int getDMG
+    {
+        get 
+        {
+            return attackDamage;
+        }
+        
+    }
 
     public float CurrentMoveSpeed
     {
@@ -236,4 +249,29 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
+
+    public void UpSpeed(float durationPower)
+    {
+        if (IsAlive && !isSpeedBoosted)
+        {
+            StartCoroutine(SpeedBoostCoroutine(durationPower));
+
+        }
+    }
+    private IEnumerator SpeedBoostCoroutine(float durationPower)
+    {
+        isSpeedBoosted = true;
+        walkSpeed *= 2; // Aumentar la velocidad
+
+        yield return new WaitForSeconds(durationPower); // Esperar la duración del boost
+
+        walkSpeed /= 2; // Restaurar la velocidad original
+        isSpeedBoosted = false;
+    }
+    public void UpAttack(float durationPower)
+    {
+        GameObject gameObjectConAttack = GameObject.Find("SwordAttack");
+        Attack attack = gameObjectConAttack.GetComponent<Attack>();
+        attack.UpAttack(durationPower);
+    }  
 }

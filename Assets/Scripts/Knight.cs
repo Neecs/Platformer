@@ -8,7 +8,70 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class Knight : MonoBehaviour
 {
-    private float walkSpeed = 3f;
+    private LinearCongruential rng;
+    public List<LootItem> lootTable; // Lista de power-ups que pueden ser dropeados
+
+
+    public GameObject AppleHealth; // Asignar en el Inspector
+    public GameObject BoarAttckDMG; // Asignar en el Inspector
+    public GameObject BeerVelocity; // Asignar en el Inspector
+
+    private void Start()
+    {
+        // Inicializar la tabla de loot con power-ups y sus probabilidades
+        lootTable = new List<LootItem>
+        {
+            new LootItem { itemName = "HealthPowerUp", dropProbability = 0.5f, itemPrefab = AppleHealth },
+            new LootItem { itemName = "DamageBoostPowerUp", dropProbability = 0.3f, itemPrefab = BoarAttckDMG },
+            new LootItem { itemName = "SpeedBoostPowerUp", dropProbability = 0.2f, itemPrefab = BeerVelocity }
+        };
+    }
+
+
+    public void DropLoot()
+    {
+        float totalProbability = 0f;
+
+        // Calcular la suma total de las probabilidades
+        foreach (LootItem item in lootTable)
+        {
+            totalProbability += item.dropProbability;
+        }
+
+        // Generar un n�mero aleatorio propsio entre 0 y la suma total de las probabilidades
+
+        rng = new LinearCongruential();
+        float randomValue = rng.RandomNumber() * totalProbability;
+       
+        float cumulativeProbability = 0f;
+
+        // Determinar qu� power-up se dropea basado en la probabilidad acumulada
+        foreach (LootItem item in lootTable)
+        {
+            cumulativeProbability += item.dropProbability;
+
+            if (randomValue <= cumulativeProbability)
+            {
+                DropItem(item);
+                break;
+            }
+        }
+    }
+    void DropItem(LootItem lootItem)
+    {
+        Debug.Log("Dropped item: " + lootItem.itemName);
+        if (lootItem.itemPrefab != null)
+        {
+            Instantiate(lootItem.itemPrefab, transform.position, Quaternion.identity);
+        }
+    }
+    public void OnDeath()
+    {
+        DropLoot();
+        Destroy(gameObject); // Elimina al "Knight" del juego
+    }
+
+    public float walkSpeed = 3f;
     public float walkStopRate = 0.2f;
     public DetectionZone attackZone;
 
