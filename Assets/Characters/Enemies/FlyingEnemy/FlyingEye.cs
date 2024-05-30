@@ -123,7 +123,7 @@ public class FlyingEyeScript : MonoBehaviour
 
         while (true)
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.5f);
 
             float randomValue = linearCongruential.RandomNumber();
             Vector2 newDirection = Vector2.zero;
